@@ -1,19 +1,21 @@
 .board {
-  box-sizing: border-box;
-  margin: 25px;
+  margin: 12.5px;
+  width: 25%;
+  text-align: center;
 }
 
-.title {
+.board-title {
   box-sizing: border-box;
   height: 30px;
   line-height: 30px;
-  text-align: center;
   color: white;
+  font-size: medium;
+  margin: 0;
 }
 
 .add-card {
-  margin-top: 12px;
-  color: darkgrey;
   text-align: left;
+  color: darkgray;
   cursor: pointer;
+  margin-top: 12px;
 }
