@@ -9,10 +9,23 @@
 
 .arrow {
   box-sizing: border-box;
-  margin: 8px;
+  margin: 0;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
+  color: turquoise;
+}
+
+.left {
+  margin-left: 8px;
+}
+
+.right {
+  margin-right: 8px;
+}
+
+.up, .down {
+  text-align: center;
 }
 
 .card-text {
@@ -20,5 +33,5 @@
   width: 100%;
   margin: 0 12px;
   padding: 14px 0;
-  text-align: left;
+  text-align: center;
 }

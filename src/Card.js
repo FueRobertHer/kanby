@@ -3,7 +3,7 @@ import './Card.css'
 
 function Card(props) {
 
-  const move = (dir) => {
+  const moveLeftRight = (dir) => {
     props.update((state) => {
       const [card] = state[props.boardIdx].items.splice(props.cardIdx, 1);
       state[props.boardIdx + dir].items.push(card); 
@@ -13,15 +13,39 @@ function Card(props) {
   const leftArrow = () => {
     if (props.boardIdx > 0) {
       return (
-        <p className="arrow" onClick={() => move(-1)}> {"<"} </p>
+        <p className="arrow left" onClick={() => moveLeftRight(-1)}> {"‹"} </p>
       )
     }
   }
 
-    const rightArrow = () => {
+  const rightArrow = () => {
     if (props.boardIdx < 3) {
       return (
-        <p className="arrow" onClick={() => move(1)}> {">"} </p>
+        <p className="arrow right" onClick={() => moveLeftRight(1)}> {"›"} </p>
+      )
+    }
+  }
+
+  const moveUpDown = (dir) => {
+    props.update((state) => {
+      let temp = state[props.boardIdx].items[props.cardIdx];
+      state[props.boardIdx].items[props.cardIdx] = state[props.boardIdx].items[props.cardIdx + dir];
+      state[props.boardIdx].items[props.cardIdx + dir] = temp;
+    })
+  }
+
+  const upArrow = () => {
+    if (props.cardIdx > 0) {
+      return (
+        <p className="arrow up" onClick={() => moveUpDown(-1)}> {"⌃"} </p>
+      )
+    }
+  }
+
+  const downArrow = () => {
+    if (props.cardIdx < props.items.length - 1) {
+      return (
+        <p className="arrow down" onClick={() => moveUpDown(1)}> {"⌄"} </p>
       )
     }
   }
@@ -30,7 +54,11 @@ function Card(props) {
     <>
       <div className="card">
         {leftArrow()}
-        <div className="card-text">{props.item}</div>
+        <div className="card-text">
+          {upArrow()}
+          {props.item}
+          {downArrow()}
+        </div>
         {rightArrow()}
       </div>
     </>
