@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import GlobalStateContextProvider, { GlobalStateContext } from './GlobalStateContextProvider';
+import React from 'react'
+import GlobalStateContextProvider from './GlobalStateContextProvider';
 import Board from './Board';
 
 import './App.css';
