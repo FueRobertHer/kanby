@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { GlobalStateContext } from './GlobalStateContextProvider';
+import React from 'react';
+import { useGlobalStateContext } from './GlobalStateContextProvider';
 
 import './Card.css';
 
 const Card = (props) => {
-  const {state, dispatch} = useContext(GlobalStateContext);
+  const {state, dispatch} = useGlobalStateContext();
 
   const move = (dir) => {
     dispatch({

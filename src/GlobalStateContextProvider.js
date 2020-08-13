@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useContext } from 'react';
 
 const initial = [
   {title: "Winnie", cards: ["", ""], color: "#8E6E95"},
@@ -35,6 +35,11 @@ const reducer = (state, action) => {
 }
 
 export const GlobalStateContext = createContext();
+
+export const useGlobalStateContext = () => {
+  const context = useContext(GlobalStateContext);
+  return context;
+}
 
 const GlobalStateContextProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, JSON.parse(window.localStorage.getItem("kanban")) || initial);

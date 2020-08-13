@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import {GlobalStateContext} from './GlobalStateContextProvider';
+import React from 'react';
+import {useGlobalStateContext} from './GlobalStateContextProvider';
 import Card from './Card';
 
 import './Board.css';
 
 const Board = (props) => {
-  const {state, dispatch} = useContext(GlobalStateContext);
+  const {state, dispatch} = useGlobalStateContext();
   const titleStyle = {
     backgroundColor: state[props.boardIdx].color
   };
