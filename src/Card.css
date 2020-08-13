@@ -1,0 +1,25 @@
+.card {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  margin: 3px 0;
+}
+
+.card-body {
+  width: 100%;
+  margin: 0 12px;
+  padding: 14px 0;
+  text-align: left;
+}
+
+.arrow {
+  cursor: pointer;
+}
+
+.left {
+  margin-left: 8px;
+}
+
+.right {
+  margin-right: 8px;
+}
