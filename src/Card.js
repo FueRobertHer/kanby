@@ -4,12 +4,16 @@ import { GlobalStateContext } from './GlobalStateContextProvider';
 import './Card.css';
 
 const Card = (props) => {
-  const {state, update} = useContext(GlobalStateContext);
+  const {state, dispatch} = useContext(GlobalStateContext);
 
   const move = (dir) => {
-    update((state) => {
-      const [card] = state[props.boardIdx].cards.splice(props.cardIdx, 1);
-      state[props.boardIdx + dir].cards.push(card);
+    dispatch({
+      type: "move",
+      payload: {
+        boardIdx: props.boardIdx,
+        cardIdx: props.cardIdx,
+        dir
+      }
     })
   }
 
@@ -31,8 +35,12 @@ const Card = (props) => {
     e.preventDefault();
     const yes = window.confirm("Delete this card?");
     if (!yes) return;
-    update(state => {
-      state[props.boardIdx].cards.splice(props.cardIdx, 1);
+    dispatch({
+      type: "deleteCard",
+      payload: {
+        boardIdx: props.boardIdx,
+        cardIdx: props.cardIdx
+      }
     })
   }
 

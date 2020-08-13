@@ -5,18 +5,15 @@ import Card from './Card';
 import './Board.css';
 
 const Board = (props) => {
-  const {state, update} = useContext(GlobalStateContext);
+  const {state, dispatch} = useContext(GlobalStateContext);
   const titleStyle = {
     backgroundColor: state[props.boardIdx].color
   };
-  console.log(state[props.boardIdx])
 
   const addCard = () => {
     const newCard = window.prompt("Enter something into a new card");
     if (!newCard || newCard.length === 0) return;
-    update((state) => {
-      state[props.boardIdx].cards.push(newCard);
-    })
+    dispatch({type: "addCard", payload: {boardIdx: props.boardIdx, body: newCard}})
   }
 
   return (
