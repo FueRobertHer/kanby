@@ -1,24 +1,42 @@
 const reducer = (state, action) => {
-  const {
-    type,
-    payload
-  } = action;
-  const newState = JSON.parse(JSON.stringify(state));
+  const {type, payload} = action;
+  let newState;
 
   switch (type) {
     case "move":
-      const [card] = newState[payload.boardIdx].cards.splice(payload.cardIdx, 1);
-      newState[payload.boardIdx + payload.dir].cards.push(card);
+      newState = {
+        ...state,
+        [payload.boardIdx]: {
+          ...state[payload.boardIdx],
+          cards: state[payload.boardIdx].cards.filter((_,idx) => idx !== payload.cardIdx)
+        },
+        [payload.boardIdx + payload.dir]: {
+          ...state[payload.boardIdx + payload.dir],
+          cards: [...state[payload.boardIdx + payload.dir].cards, state[payload.boardIdx].cards[payload.cardIdx]]
+        }
+      }
       window.localStorage.setItem("kanban", JSON.stringify(newState));
       return newState;
 
     case "addCard":
-      newState[payload.boardIdx].cards.push(payload.body);
+      newState = {
+        ...state,
+        [payload.boardIdx]: {
+          ...state[payload.boardIdx],
+          cards: [...state[payload.boardIdx].cards, payload.body]
+        },
+      }
       window.localStorage.setItem("kanban", JSON.stringify(newState));
       return newState;
 
     case "deleteCard":
-      newState[payload.boardIdx].cards.splice(payload.cardIdx, 1);
+      newState = {
+        ...state,
+        [payload.boardIdx]: {
+          ...state[payload.boardIdx],
+          cards: state[payload.boardIdx].cards.filter((_,idx) => idx !== payload.cardIdx)
+        },
+      }
       window.localStorage.setItem("kanban", JSON.stringify(newState));
       return newState;
 
