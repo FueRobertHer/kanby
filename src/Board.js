@@ -18,6 +18,7 @@ const Board = (props) => {
       state[props.boardIdx].cards.push(newCard);
     })
   }
+
   return (
     <div className="board">
       <h2 className="board-title" style={titleStyle}>{state[props.boardIdx].title}</h2>

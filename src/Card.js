@@ -20,15 +20,24 @@ const Card = (props) => {
     )
   }
 
-    const rightArrow = () => {
+  const rightArrow = () => {
     if (props.boardIdx === 4) return;
     return (
       <p className="arrow right" onClick={() => move(1)}> {">"} </p>
     )
   }
 
+  const deleteCard = (e) => {
+    e.preventDefault();
+    const yes = window.confirm("Delete this card?");
+    if (!yes) return;
+    update(state => {
+      state[props.boardIdx].cards.splice(props.cardIdx, 1);
+    })
+  }
+
   return (
-    <div className="card">
+    <div className="card" onContextMenu={deleteCard}>
       {leftArrow()}
       <div className="card-body">
         {state[props.boardIdx].cards[props.cardIdx]}
